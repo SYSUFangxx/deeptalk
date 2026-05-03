@@ -13,13 +13,13 @@
 
 这是一个零依赖静态站点，直接用浏览器打开项目根目录下的 `index.html` 即可。
 
-如果需要本地服务预览，可以在项目根目录启动一个静态文件服务，例如：
+如果需要本地服务预览，可以在项目根目录启动内置静态文件服务：
 
 ```powershell
-python -m http.server 8080
+npm start
 ```
 
-然后访问 `http://localhost:8080`。
+然后访问 `http://127.0.0.1:5173`。
 
 ## 部署到 GitHub Pages
 
@@ -43,6 +43,8 @@ python -m http.server 8080
 │  ├─ app-contract.test.js
 │  ├─ app-runtime.test.js
 │  └─ topic-engine.test.js
+├─ tools/
+│  └─ serve-static.js
 ├─ index.html
 ├─ package.json
 └─ README.md
