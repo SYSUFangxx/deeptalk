@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>夫妻深夜话题生成器</title>
+    <meta
+      name="description"
+      content="一个为夫妻准备的轻量夜聊话题工具，打开就能获得一个值得聊的话题。"
+    />
+    <link rel="stylesheet" href="./src/styles/main.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <main class="app-main">
+        <section class="view is-active" data-view="home" aria-labelledby="home-title">
+          <header class="hero">
+            <p class="eyebrow">Tonight Talk</p>
+            <h1 id="home-title">今晚聊点什么</h1>
+            <p class="hero-copy">给你们一个适合今晚的聊天切口，不用想太多，直接开始就好。</p>
+          </header>
+
+          <article class="topic-card" aria-live="polite">
+            <div class="topic-meta">
+              <span class="topic-category" id="home-category"></span>
+              <div class="topic-tags" id="home-tags"></div>
+            </div>
+            <h2 class="topic-content" id="home-content"></h2>
+            <p class="topic-prompt" id="home-prompt"></p>
+          </article>
+
+          <div class="button-row">
+            <button class="button button-secondary" id="home-skip-button" type="button">跳过</button>
+            <button class="button button-primary" id="home-next-button" type="button">换一个</button>
+          </div>
+
+          <section class="panel">
+            <div class="panel-copy">
+              <h3>今晚想定个方向？</h3>
+              <p>如果你们现在更想聊回忆、未来，或者只是来点轻松一点的，也可以直接按分类挑。</p>
+            </div>
+            <button class="button button-panel" id="go-categories-button" type="button">去分类挑一类</button>
+          </section>
+        </section>
+
+        <section class="view" data-view="categories" aria-labelledby="categories-title">
+          <header class="hero hero-compact">
+            <p class="eyebrow">Pick A Path</p>
+            <h1 id="categories-title">选个方向聊</h1>
+            <p class="hero-copy">今晚想从哪一类开始，就从那一类慢慢聊开。</p>
+          </header>
+
+          <section class="category-grid" id="category-grid" aria-label="话题分类"></section>
+
+          <section class="category-detail" id="category-detail" hidden>
+            <div class="category-detail-header">
+              <div>
+                <p class="detail-label">当前分类</p>
+                <h2 id="detail-category-title"></h2>
+              </div>
+              <button class="text-button" id="change-category-button" type="button">换个分类</button>
+            </div>
+
+            <article class="topic-card topic-card-detail" aria-live="polite">
+              <div class="topic-meta">
+                <span class="topic-category" id="detail-category"></span>
+                <div class="topic-tags" id="detail-tags"></div>
+              </div>
+              <h3 class="topic-content" id="detail-content"></h3>
+              <p class="topic-prompt" id="detail-prompt"></p>
+            </article>
+
+            <div class="button-row">
+              <button class="button button-secondary" id="detail-skip-button" type="button">跳过</button>
+              <button class="button button-primary" id="detail-next-button" type="button">换一个</button>
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <nav class="tabbar" aria-label="主导航">
+        <button class="tabbar-item is-active" data-nav="home" type="button">首页</button>
+        <button class="tabbar-item" data-nav="categories" type="button">分类</button>
+      </nav>
+    </div>
+
+    <script src="./src/data/topics.js"></script>
+    <script src="./src/lib/topic-engine.js"></script>
+    <script src="./src/app.js"></script>
+  </body>
+</html>
