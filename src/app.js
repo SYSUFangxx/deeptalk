@@ -3,6 +3,7 @@
   const { getTopicPool, pickRandomTopic } = window.DeepTalkEngine;
 
   const sessionState = {
+    hasDrawnHomeCard: false,
     homeCurrentId: null,
     categoryCurrentId: null,
     activeCategory: null,
@@ -13,6 +14,7 @@
     views: document.querySelectorAll("[data-view]"),
     navButtons: document.querySelectorAll("[data-nav]"),
     homeCategory: document.querySelector("#home-category"),
+    homeCard: document.querySelector("#home-card"),
     homeTags: document.querySelector("#home-tags"),
     homeContent: document.querySelector("#home-content"),
     homePrompt: document.querySelector("#home-prompt"),
@@ -53,12 +55,15 @@
   function showHomeTopic(topic) {
     if (!topic) return;
     sessionState.homeCurrentId = topic.id;
+    sessionState.hasDrawnHomeCard = true;
     renderTopic(topic, {
       category: elements.homeCategory,
       content: elements.homeContent,
       prompt: elements.homePrompt,
       tags: elements.homeTags,
     });
+    elements.homeCard.classList.remove("is-covered");
+    elements.homeNextButton.textContent = "再抽一张";
   }
 
   function showCategoryTopic(topic) {
@@ -74,7 +79,11 @@
 
   function nextHomeTopic() {
     const pool = getTopicPool(topics, { skippedIds: sessionState.skippedIds });
-    showHomeTopic(pickRandomTopic(pool, { currentId: sessionState.homeCurrentId }));
+    elements.homeCard.classList.add("is-shuffling");
+    window.setTimeout(() => {
+      showHomeTopic(pickRandomTopic(pool, { currentId: sessionState.homeCurrentId }));
+      elements.homeCard.classList.remove("is-shuffling");
+    }, sessionState.hasDrawnHomeCard ? 180 : 0);
   }
 
   function skipHomeTopic() {
@@ -156,7 +165,6 @@
   function init() {
     renderCategoryGrid();
     bindEvents();
-    nextHomeTopic();
     setView("home");
   }
 

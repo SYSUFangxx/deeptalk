@@ -14,33 +14,39 @@
     <div class="app-shell">
       <main class="app-main">
         <section class="view is-active" data-view="home" aria-labelledby="home-title">
-          <header class="hero">
-            <p class="eyebrow">Tonight Talk</p>
-            <h1 id="home-title">今晚聊点什么</h1>
-            <p class="hero-copy">给你们一个适合今晚的聊天切口，不用想太多，直接开始就好。</p>
+          <header class="hero home-hero">
+            <p class="eyebrow">Night Draw</p>
+            <h1 id="home-title">抽一张今晚的话题</h1>
+            <p class="hero-copy">像睡前的小仪式一样，翻开一张卡，然后慢慢聊下去。</p>
           </header>
 
-          <article class="topic-card" aria-live="polite">
-            <div class="topic-meta">
-              <span class="topic-category" id="home-category"></span>
-              <div class="topic-tags" id="home-tags"></div>
-            </div>
-            <h2 class="topic-content" id="home-content"></h2>
-            <p class="topic-prompt" id="home-prompt"></p>
-          </article>
-
-          <div class="button-row">
-            <button class="button button-secondary" id="home-skip-button" type="button">跳过</button>
-            <button class="button button-primary" id="home-next-button" type="button">换一个</button>
-          </div>
-
-          <section class="panel">
-            <div class="panel-copy">
-              <h3>今晚想定个方向？</h3>
-              <p>如果你们现在更想聊回忆、未来，或者只是来点轻松一点的，也可以直接按分类挑。</p>
-            </div>
-            <button class="button button-panel" id="go-categories-button" type="button">去分类挑一类</button>
+          <section class="draw-stage" aria-live="polite">
+            <article class="draw-card is-covered" id="home-card">
+              <div class="card-face card-back">
+                <p class="card-kicker">今晚签</p>
+                <div class="card-mark">?</div>
+                <p class="card-back-copy">把问题交给今晚</p>
+              </div>
+              <div class="card-face card-front">
+                <div class="topic-meta">
+                  <span class="topic-category" id="home-category"></span>
+                  <div class="topic-tags" id="home-tags"></div>
+                </div>
+                <h2 class="topic-content" id="home-content"></h2>
+                <p class="topic-prompt" id="home-prompt"></p>
+              </div>
+            </article>
           </section>
+
+          <div class="draw-actions">
+            <button class="button button-primary button-draw" id="home-next-button" type="button">
+              抽今晚的话题
+            </button>
+            <div class="secondary-actions">
+              <button class="text-button" id="home-skip-button" type="button">跳过这张</button>
+              <button class="text-button" id="go-categories-button" type="button">按分类筛选</button>
+            </div>
+          </div>
         </section>
 
         <section class="view" data-view="categories" aria-labelledby="categories-title">

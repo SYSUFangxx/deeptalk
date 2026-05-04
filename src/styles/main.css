@@ -31,8 +31,8 @@ body {
 
 body {
   background:
-    linear-gradient(135deg, rgba(23, 107, 92, 0.08) 0 25%, transparent 25% 100%),
-    linear-gradient(180deg, #fbfcf8 0%, var(--page) 52%, var(--page-soft) 100%);
+    linear-gradient(135deg, rgba(23, 107, 92, 0.08) 0 18%, transparent 18% 100%),
+    linear-gradient(180deg, #fbfcf8 0%, var(--page) 54%, #e8f0f2 100%);
   color: var(--text);
 }
 
@@ -59,7 +59,11 @@ button {
 }
 
 .hero {
-  padding: 8px 2px 20px;
+  padding: 8px 2px 18px;
+}
+
+.home-hero {
+  min-height: 150px;
 }
 
 .hero-compact {
@@ -89,12 +93,95 @@ button {
   line-height: 1.7;
 }
 
-.topic-card {
+.topic-card,
+.draw-card {
   padding: 24px 20px;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background: var(--surface);
   box-shadow: var(--shadow);
+}
+
+.draw-stage {
+  perspective: 1200px;
+}
+
+.draw-card {
+  position: relative;
+  display: grid;
+  min-height: 360px;
+  padding: 0;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 380ms ease, box-shadow 180ms ease;
+}
+
+.draw-card.is-covered {
+  transform: rotateY(180deg);
+}
+
+.draw-card.is-shuffling {
+  transform: translateY(-6px) rotateZ(-1deg);
+  box-shadow: 0 24px 42px rgba(25, 54, 47, 0.18);
+}
+
+.draw-card.is-covered.is-shuffling {
+  transform: translateY(-6px) rotateY(180deg) rotateZ(1deg);
+}
+
+.card-face {
+  grid-area: 1 / 1;
+  min-height: 360px;
+  padding: 24px 20px;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background:
+    linear-gradient(135deg, rgba(23, 107, 92, 0.12), transparent 36%),
+    linear-gradient(180deg, #fffdf7 0%, #edf7f3 100%);
+  color: var(--primary-strong);
+  text-align: center;
+  transform: rotateY(180deg);
+}
+
+.card-kicker {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.card-mark {
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 136px;
+  border: 1px solid rgba(23, 107, 92, 0.22);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 16px 28px rgba(25, 54, 47, 0.12);
+  color: var(--primary);
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.card-back-copy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
 }
 
 .topic-card-detail {
@@ -156,6 +243,24 @@ button {
   grid-template-columns: 1fr 1fr;
   gap: 12px;
   margin-top: 18px;
+}
+
+.draw-actions {
+  margin-top: 18px;
+}
+
+.button-draw {
+  width: 100%;
+  min-height: 60px;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.secondary-actions {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 14px;
 }
 
 .button {
@@ -341,5 +446,10 @@ button {
 
   .category-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .draw-card,
+  .card-face {
+    min-height: 420px;
   }
 }
