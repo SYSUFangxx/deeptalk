@@ -135,7 +135,7 @@
           <strong>${category.key}</strong>
           <span>${category.description}</span>
         </div>
-        <span class="category-chip-mark">+</span>
+        <span class="category-chip-mark">›</span>
       `;
       button.addEventListener("click", () => {
         setView("categories");
