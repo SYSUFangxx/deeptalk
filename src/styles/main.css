@@ -102,38 +102,28 @@ button {
   box-shadow: var(--shadow);
 }
 
-.draw-stage {
-  perspective: 1200px;
-}
-
 .draw-card {
   position: relative;
   display: grid;
   min-height: 360px;
   padding: 0;
   overflow: hidden;
-  transform-style: preserve-3d;
-  transition: transform 380ms ease, box-shadow 180ms ease;
-}
-
-.draw-card.is-covered {
-  transform: rotateY(180deg);
+  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .draw-card.is-shuffling {
-  transform: translateY(-6px) rotateZ(-1deg);
+  transform: translateY(-6px) rotateZ(-0.7deg);
   box-shadow: 0 24px 42px rgba(25, 54, 47, 0.18);
 }
 
 .draw-card.is-covered.is-shuffling {
-  transform: translateY(-6px) rotateY(180deg) rotateZ(1deg);
+  transform: translateY(-6px) rotateZ(0.7deg);
 }
 
 .card-face {
   grid-area: 1 / 1;
   min-height: 360px;
   padding: 24px 20px;
-  backface-visibility: hidden;
 }
 
 .card-front {
@@ -143,7 +133,7 @@ button {
 }
 
 .card-back {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -153,7 +143,14 @@ button {
     linear-gradient(180deg, #fffdf7 0%, #edf7f3 100%);
   color: var(--primary-strong);
   text-align: center;
-  transform: rotateY(180deg);
+}
+
+.draw-card.is-covered .card-front {
+  display: none;
+}
+
+.draw-card.is-covered .card-back {
+  display: flex;
 }
 
 .card-kicker {
