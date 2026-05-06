@@ -47,13 +47,13 @@ function createElement(selector) {
 
 function createDocument() {
   const ids = [
+    "back-home-button",
     "home-category",
     "home-card",
     "home-tags",
     "home-content",
     "home-prompt",
     "home-next-button",
-    "home-skip-button",
     "go-categories-button",
     "category-grid",
     "category-detail",
@@ -73,23 +73,16 @@ function createDocument() {
     view.dataset.view = viewName;
     return view;
   });
-  const navButtons = ["home", "categories"].map((viewName) => {
-    const button = createElement(`[data-nav=${viewName}]`);
-    button.dataset.nav = viewName;
-    return button;
-  });
 
   return {
     bySelector,
     views,
-    navButtons,
     createElement,
     querySelector(selector) {
       return bySelector.get(selector) || null;
     },
     querySelectorAll(selector) {
       if (selector === "[data-view]") return views;
-      if (selector === "[data-nav]") return navButtons;
       return [];
     },
   };
@@ -107,6 +100,7 @@ const context = vm.createContext({
   setTimeout(callback) {
     callback();
   },
+  scrollTo() {},
 });
 context.globalThis = context;
 context.window = context;

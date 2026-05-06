@@ -43,7 +43,6 @@
               抽今晚的话题
             </button>
             <div class="secondary-actions">
-              <button class="text-button" id="home-skip-button" type="button">跳过这张</button>
               <button class="text-button" id="go-categories-button" type="button">按分类筛选</button>
             </div>
           </div>
@@ -51,6 +50,7 @@
 
         <section class="view" data-view="categories" aria-labelledby="categories-title">
           <header class="hero hero-compact">
+            <button class="text-button back-home-button" id="back-home-button" type="button">返回抽卡</button>
             <p class="eyebrow">Pick A Path</p>
             <h1 id="categories-title">选个方向聊</h1>
             <p class="hero-copy">今晚想从哪一类开始，就从那一类慢慢聊开。</p>
@@ -83,11 +83,6 @@
           </section>
         </section>
       </main>
-
-      <nav class="tabbar" aria-label="主导航">
-        <button class="tabbar-item is-active" data-nav="home" type="button">首页</button>
-        <button class="tabbar-item" data-nav="categories" type="button">分类</button>
-      </nav>
     </div>
 
     <script src="./src/data/topics.js"></script>

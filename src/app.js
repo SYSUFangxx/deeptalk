@@ -12,14 +12,13 @@
 
   const elements = {
     views: document.querySelectorAll("[data-view]"),
-    navButtons: document.querySelectorAll("[data-nav]"),
+    backHomeButton: document.querySelector("#back-home-button"),
     homeCategory: document.querySelector("#home-category"),
     homeCard: document.querySelector("#home-card"),
     homeTags: document.querySelector("#home-tags"),
     homeContent: document.querySelector("#home-content"),
     homePrompt: document.querySelector("#home-prompt"),
     homeNextButton: document.querySelector("#home-next-button"),
-    homeSkipButton: document.querySelector("#home-skip-button"),
     goCategoriesButton: document.querySelector("#go-categories-button"),
     categoryGrid: document.querySelector("#category-grid"),
     categoryDetail: document.querySelector("#category-detail"),
@@ -86,13 +85,6 @@
     }, sessionState.hasDrawnHomeCard ? 180 : 0);
   }
 
-  function skipHomeTopic() {
-    if (sessionState.homeCurrentId) {
-      sessionState.skippedIds.add(sessionState.homeCurrentId);
-    }
-    nextHomeTopic();
-  }
-
   function nextCategoryTopic() {
     const pool = getTopicPool(topics, {
       category: sessionState.activeCategory,
@@ -112,9 +104,7 @@
     elements.views.forEach((view) => {
       view.classList.toggle("is-active", view.dataset.view === viewName);
     });
-    elements.navButtons.forEach((button) => {
-      button.classList.toggle("is-active", button.dataset.nav === viewName);
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function activateCategory(categoryKey) {
@@ -147,18 +137,14 @@
 
   function bindEvents() {
     elements.homeNextButton.addEventListener("click", nextHomeTopic);
-    elements.homeSkipButton.addEventListener("click", skipHomeTopic);
     elements.detailNextButton.addEventListener("click", nextCategoryTopic);
     elements.detailSkipButton.addEventListener("click", skipCategoryTopic);
     elements.goCategoriesButton.addEventListener("click", () => setView("categories"));
+    elements.backHomeButton.addEventListener("click", () => setView("home"));
     elements.changeCategoryButton.addEventListener("click", () => {
       elements.categoryDetail.hidden = true;
       sessionState.activeCategory = null;
       sessionState.categoryCurrentId = null;
-    });
-
-    elements.navButtons.forEach((button) => {
-      button.addEventListener("click", () => setView(button.dataset.nav));
     });
   }
 

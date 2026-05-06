@@ -49,9 +49,16 @@ test("required app mount points exist", () => {
     'id="home-content"',
     'id="category-grid"',
     'id="detail-content"',
+    'id="back-home-button"',
   ].forEach((fragment) => {
     assert.ok(html.includes(fragment), `${fragment} should be present`);
   });
+});
+
+test("home keeps classification as a secondary path", () => {
+  assert.equal(html.includes("tabbar"), false);
+  assert.equal(html.includes("跳过这张"), false);
+  assert.ok(html.includes("按分类筛选"));
 });
 
 let failed = 0;
